@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:myApp/cod_barras.dart';
+import 'package:myApp/screens/book_add.dart';
+import "cadastro.dart";
+import "cod_barras.dart";
+
+var f = () => print("f");
+var scan_code = () => new ScanState().scan();// runApp(CodBarras());
+var cadastro = () => runApp(LibraryApp());
 
 void main() {
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -29,6 +38,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
+ 
 }
 
 class MyHomePage extends StatefulWidget {
@@ -79,12 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   childAspectRatio: 3/2,
                 ),
                 children: <Widget>[
-                  _gridItem(Icons.airplanemode_active, "Text"),
-                  _gridItem(Icons.add_shopping_cart, "Text"),
-                  _gridItem(Icons.arrow_drop_down_circle, "Text"),
-                  _gridItem(Icons.bluetooth_searching, "Text"),
-                  _gridItem(Icons.add_location, "Text"),
-                  _gridItem(Icons.arrow_drop_down_circle, "Text"),
+                  _gridItem(Icons.airplanemode_active, "Escanear", scan_code),
+                  _gridItem(Icons.add_shopping_cart, "Cadastro", cadastro),
+                  _gridItem(Icons.arrow_drop_down_circle, "Text", f),
+                  _gridItem(Icons.bluetooth_searching, "Text", f),
+                  _gridItem(Icons.add_location, "Text", f),
+                  _gridItem(Icons.arrow_drop_down_circle, "Text", f),
                 ],
               )
             ),
@@ -102,7 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 }
 
-_gridItem(icn, text){
+
+_gridItem(icn, text, _function){
   return Column(
     children: <Widget>[
       CircleAvatar(
@@ -111,7 +122,9 @@ _gridItem(icn, text){
             icn,
             size: 16.0),
             color: Colors.white,
-          onPressed: () => {},
+          onPressed: () => {
+            _function()
+          },
         ),
       backgroundColor: Colors.deepOrange.withOpacity(0.9),
       ),
