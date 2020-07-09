@@ -16,7 +16,8 @@ class BookAdd extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Cadastro'),
+          title: Text('Sub Page'),
+          backgroundColor: Colors.redAccent,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -51,6 +52,7 @@ class BookAdd extends StatelessWidget {
 
                     final Book newBook = Book(0, name, author, status);
                     _dao.save(newBook);
+                    Navigator.pop(context);
                   },
                 ),
               ),

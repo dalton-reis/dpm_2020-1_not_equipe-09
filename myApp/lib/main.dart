@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:myApp/cod_barras.dart';
 import 'package:myApp/screens/book_add.dart';
+import 'package:myApp/screens/book_get.dart';
 import "cadastro.dart";
 import "cod_barras.dart";
 
 var f = (context) => print("f");
 var scan_code = (context) => new ScanState().scan();// runApp(CodBarras());
 var cadastro = (context) => nevegaParaCadastro(context);
+var consulta = (context) => listarLivros(context);
+
+void listarLivros(context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => BookGet()));
+
+}
+
+void cadastrarLivroComCodBarra(context) {
+  var livro =  new ScanState().scan();
+
+}
 
 void nevegaParaCadastro(context) {
   print("passou aqui");
-  Navigator.push(context, MaterialPageRoute(builder: (context) => LibraryApp()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => BookAdd()));
 }
 
 void main() {
@@ -96,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   _gridItem(Icons.airplanemode_active, "Escanear", scan_code, context),
                   _gridItem(Icons.add_shopping_cart, "Cadastro", cadastro, context),
-                  _gridItem(Icons.arrow_drop_down_circle, "Text", f, context),
+                  _gridItem(Icons.arrow_drop_down_circle, "Text", consulta, context),
                   _gridItem(Icons.bluetooth_searching, "Text", f, context),
                   _gridItem(Icons.add_location, "Text", f, context),
                   _gridItem(Icons.arrow_drop_down_circle, "Text", f, context),
