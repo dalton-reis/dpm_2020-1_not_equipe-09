@@ -4,9 +4,14 @@ import 'package:myApp/screens/book_add.dart';
 import "cadastro.dart";
 import "cod_barras.dart";
 
-var f = () => print("f");
-var scan_code = () => new ScanState().scan();// runApp(CodBarras());
-var cadastro = () => runApp(LibraryApp());
+var f = (context) => print("f");
+var scan_code = (context) => new ScanState().scan();// runApp(CodBarras());
+var cadastro = (context) => nevegaParaCadastro(context);
+
+void nevegaParaCadastro(context) {
+  print("passou aqui");
+  Navigator.push(context, MaterialPageRoute(builder: (context) => LibraryApp()));
+}
 
 void main() {
   runApp(MyApp());
@@ -33,7 +38,7 @@ class MyApp extends StatelessWidget {
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+       // visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -89,12 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   childAspectRatio: 3/2,
                 ),
                 children: <Widget>[
-                  _gridItem(Icons.airplanemode_active, "Escanear", scan_code),
-                  _gridItem(Icons.add_shopping_cart, "Cadastro", cadastro),
-                  _gridItem(Icons.arrow_drop_down_circle, "Text", f),
-                  _gridItem(Icons.bluetooth_searching, "Text", f),
-                  _gridItem(Icons.add_location, "Text", f),
-                  _gridItem(Icons.arrow_drop_down_circle, "Text", f),
+                  _gridItem(Icons.airplanemode_active, "Escanear", scan_code, context),
+                  _gridItem(Icons.add_shopping_cart, "Cadastro", cadastro, context),
+                  _gridItem(Icons.arrow_drop_down_circle, "Text", f, context),
+                  _gridItem(Icons.bluetooth_searching, "Text", f, context),
+                  _gridItem(Icons.add_location, "Text", f, context),
+                  _gridItem(Icons.arrow_drop_down_circle, "Text", f, context),
                 ],
               )
             ),
@@ -113,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-_gridItem(icn, text, _function){
+_gridItem(icn, text, _function, context){
   return Column(
     children: <Widget>[
       CircleAvatar(
@@ -123,7 +128,7 @@ _gridItem(icn, text, _function){
             size: 16.0),
             color: Colors.white,
           onPressed: () => {
-            _function()
+            _function(context)
           },
         ),
       backgroundColor: Colors.deepOrange.withOpacity(0.9),
